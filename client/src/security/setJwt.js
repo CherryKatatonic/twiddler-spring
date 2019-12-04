@@ -6,6 +6,7 @@ const setJWTToken = token => {
   if (!token) {
     localStorage.removeItem("jwt");
     delete axios.defaults.headers.common["Authorization"];
+    return false;
   }
 
   if (token) {
@@ -15,10 +16,11 @@ const setJWTToken = token => {
       console.log('JWT expired');
       localStorage.removeItem("jwt");
       delete axios.defaults.headers.common["Authorization"];
+      return false;
     } else {
       axios.defaults.headers.common["Authorization"] = token;
+      return true;
     }
-
   }
 };
 

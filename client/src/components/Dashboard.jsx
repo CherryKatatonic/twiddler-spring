@@ -15,8 +15,13 @@ export default class Dashboard extends Component {
         let auth = null;
 
         if (jwt) {
-            setJWTToken(jwt);
-            auth = jwt_decode(jwt);
+            const valid = setJWTToken(jwt);
+
+            if (!valid) {
+                auth = null;
+            } else {
+                auth = jwt_decode(jwt);
+            }
         }
 
         super(props);

@@ -1,6 +1,31 @@
 # Twiddler
 A Twitter mockup made with React, Spring Boot, and MySQL
 
+## Getting Started:
+### 1. Clone the project to your machine and open the project folder in your IDE
+
+### 2. Install dependencies:
+- Client:
+    - Run `npm install` in the `client/` folder
+- Server (using IDE or CLI):
+    - (IDE): Click "Enable Maven auto-import"
+    - (CLI): run `mvn clean package` in the project folder
+
+### 3. Add the following environment variables to your Spring Boot **Run Configuration** in the IDE:
+- `mysql.url`: `mysql.url=jdbc:mysql://localhost:3306/twiddler`
+- `mysql.username`: `YOUR_MYSQL_USERNAME`
+- `mysql.password`: `YOUR_MYSQL_PASSWORD`
+- `JWT_SECRET_KEY`: `ANY_STRING_YOU_WANT`
+- (optional) `spring.profiles.active`: `dev`
+  - optional because a `default` profile is defined in `application.yml` with the same settings as the `dev` profile
+
+### 4. Run:
+- Client:
+    - Run `npm start` in the `client/` folder
+- Server (using IDE or CLI):
+    - (IDE): Click the Run button in the IDE
+    - (CLI): run `mvn spring-boot:run -Dspring-boot.run.jvmArguments="-Dmysql.url=jdbc:mysql://localhost:3306/twiddler -Dmysql.username=YOUR_MYSQL_USERNAME -Dmysql.password=YOUR_MYSQL_PASSWORD -DJWT_SECRET_KEY=ANY_STRING_YOU_WANT"` in the project folder
+
 ## Dependencies:
 
 ### Client:

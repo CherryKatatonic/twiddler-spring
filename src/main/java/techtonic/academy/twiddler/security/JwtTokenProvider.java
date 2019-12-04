@@ -1,6 +1,8 @@
 package techtonic.academy.twiddler.security;
 
 import io.jsonwebtoken.*;
+import net.minidev.json.JSONUtil;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Component;
 import techtonic.academy.twiddler.entity.User;
@@ -13,6 +15,11 @@ import java.util.Map;
 // The JWT Token Provider is responsible for generating and validating JWT tokens
 @Component
 public class JwtTokenProvider {
+
+    // Assigns the value of the `JWT_SECRET_KEY` environment variable to the String `JWT_SECRET_KEY`
+    // (Note: the environment variable and the Java object do NOT have to have the same name)
+    @Value("${JWT_SECRET_KEY}")
+    private String JWT_SECRET_KEY;
 
     public String generateToken(Authentication auth) {
         User user = (User) auth.getPrincipal();
@@ -28,20 +35,13 @@ public class JwtTokenProvider {
             .setClaims(claims)
             .setIssuedAt(now)
             .setExpiration(exp)
-            // Here we are simply using the string "secret" as the key to encode and decode JWTs with...
-            // DON'T EVER DO THIS!!!
-            // The hard-coded string is just used here for demonstrative purposes. For any app running in
-            // a production environment, this secret key string should be provided to the application as
-            // an environment variable.
-            .signWith(SignatureAlgorithm.HS512, "secret")
+            .signWith(SignatureAlgorithm.HS512, JWT_SECRET_KEY)
             .compact();
     }
 
     public boolean validateToken(String token) {
         try {
-            // Using the same string value that was used to encode the token
-            // in order to decode it and make sure it's valid
-            Jwts.parser().setSigningKey("secret").parse(token);
+            Jwts.parser().setSigningKey(JWT_SECRET_KEY).parse(token);
             return true;
         } catch (MalformedJwtException e) {
             System.out.println("Invalid JWT");
@@ -59,7 +59,7 @@ public class JwtTokenProvider {
 
     // Utility method for getting the user ID from the token
     public long getUserId(String token) {
-        Claims claims = Jwts.parser().setSigningKey("secret").parseClaimsJws(token).getBody();
+        Claims claims = Jwts.parser().setSigningKey(JWT_SECRET_KEY).parseClaimsJws(token).getBody();
         String id = (String) claims.get("id");
         return Long.parseLong(id);
     }

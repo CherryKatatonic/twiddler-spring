@@ -61,7 +61,7 @@ public class UserController {
     @PostMapping("/signup")
     ResponseEntity<?> signup(@Valid @RequestBody User user, BindingResult result) {
         // Ensure username and password are valid
-        validator.validate(user,result);
+        validator.validate(user, result);
 
         ResponseEntity<?> errorMap = errorService.MapValidationService(result);
         if (errorMap != null) return errorMap;

@@ -12,10 +12,15 @@ export default class TwiddleForm extends Component{
         this.state = this.initState;
     }
 
-    handleChange = e => {
-        this.setState({
-            [e.target.id]: e.target.value
-        })
+    handleContentChange = e => {
+        const content = e.target.value;
+        let errors = {};
+
+        if (content.length > 140) {
+            errors = {content: 'Twiddle cannot be more than 140 characters.'}
+        }
+
+        this.setState({ content, errors });
     };
 
     handleSubmit = e => {
@@ -30,7 +35,7 @@ export default class TwiddleForm extends Component{
     };
 
     render() {
-        const { user, errors } = this.state;
+        const { user, content, errors } = this.state;
 
         return (
             <div className="card card-user">
@@ -48,14 +53,15 @@ export default class TwiddleForm extends Component{
                 <div className="row px-4">
                     <form className="w-100" onSubmit={this.handleSubmit}>
                         <div className="form-group">
-                            <textarea className={"form-control font-weight-bold text-dark" + (errors.content && "is-invalid")}
+                            <textarea className={"form-control font-weight-bold text-dark " + (errors.content && "is-invalid")}
                                       id="content"
                                       name="content"
-                                      onChange={this.handleChange}
+                                      onChange={this.handleContentChange}
                                       placeholder="Got somethin' to say?"/>
-                            {errors.content && (
-                                <div className="invalid-feedback">{errors.content}</div>
-                            )}
+                            {errors.content
+                                ? <div className="invalid-feedback">{content.length}/140 characters | {errors.content}</div>
+                                : <div className="valid-feedback">{content.length}/140 characters</div>
+                            }
                         </div>
                         <div className="form-group">
                             <button className="btn btn-block btn-twiddler-light" type={"submit"} name={"action"}>Submit</button>

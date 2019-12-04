@@ -5,6 +5,7 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -38,6 +39,8 @@ public class Twiddle implements Serializable {
     @JsonIgnoreProperties
     private User user;
 
+    @NotBlank(message = "Twiddle cannot be empty")
+    @Column(length = 140)
     private String content;
 
     // Indicates that this is a Timestamp to be set automatically when the Entity is first created

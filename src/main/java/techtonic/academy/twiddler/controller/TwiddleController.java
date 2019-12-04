@@ -14,6 +14,7 @@ import techtonic.academy.twiddler.entity.Twiddle;
 import techtonic.academy.twiddler.repository.TwiddleRepo;
 import techtonic.academy.twiddler.service.MapValidationErrorService;
 import techtonic.academy.twiddler.service.TwiddleService;
+import techtonic.academy.twiddler.validation.TwiddleValidator;
 
 import javax.validation.Valid;
 import java.security.Principal;
@@ -25,8 +26,9 @@ import java.security.Principal;
 // Allow requests from this foreign origin (the URL of our React app)
 @CrossOrigin("http://localhost:3000")
 public class TwiddleController {
-    @Autowired TwiddleRepo repo;
-    @Autowired TwiddleService service;
+    @Autowired private TwiddleRepo repo;
+    @Autowired private TwiddleService service;
+    @Autowired private TwiddleValidator validator;
     @Autowired private MapValidationErrorService validationService;
 
     // GET:/api/twiddles
@@ -51,6 +53,8 @@ public class TwiddleController {
     @PostMapping("")
     // Principal refers to the Auth credentials that are present in the Spring Security Context
     ResponseEntity<?> createTwiddle(@Valid @RequestBody Twiddle twiddle, BindingResult result, Principal principal) {
+        // Ensure content length and other fields are valid
+        validator.validate(twiddle, result);
 
         ResponseEntity<?> errorMap = validationService.MapValidationService(result);
         if (errorMap != null) return errorMap;

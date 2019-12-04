@@ -2,8 +2,6 @@ import React from 'react';
 import Dashboard from "./components/Dashboard";
 import Navbar from "./components/Navbar";
 // Import global styles
-import './styles/layout.css';
-import './styles/design.css';
 import './styles/buttons.css';
 
 const App = () => {

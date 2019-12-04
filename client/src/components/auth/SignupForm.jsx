@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import setJWTToken from "../../security/setJwt";
-import jwt_decode from 'jwt-decode';
 
 export default class SignupForm extends Component {
     constructor(props) {

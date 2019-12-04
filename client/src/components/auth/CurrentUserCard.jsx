@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import setJWTToken from "../../security/setJwt";
 
 export default class CurrentUserCard extends Component {
     constructor(props) {

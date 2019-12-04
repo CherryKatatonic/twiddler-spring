@@ -1,0 +1,61 @@
+spring:
+  # Dev Profile
+  # Config settings for running the app in a local development environment
+  profiles: dev
+  # Connection to local MySql server
+  datasource:
+    url: ${mysql.url}
+    username: ${mysql.username}
+    password: ${mysql.password}
+  jpa:
+    database-platform: org.hibernate.dialect.MySQL5Dialect
+    hibernate:
+      # It is good security practice to, after your database is in production state,
+      # set "ddl-auto" to "none", revoke all privileges from the MySQL user connected to the
+      # Spring application, and give the MySQL user only SELECT, UPDATE, INSERT, and DELETE.
+      ddl-auto: update
+  data:
+    rest:
+      base-path: /api
+    web:
+      # Global Pagination Settings
+      pageable:
+        default-page-size: 10
+        max-page-size: 100
+  jackson:
+    # Set timezone for MySql Hibernate timestamp injections
+    time-zone: UTC
+
+--- # Different Spring Profiles in a .YML config file are separated by a triple hyphen
+    # The profile to use can be set with an environment variable (spring.profiles.active=dev),
+    # or with a command line argument if starting the app through the command line (-Dspring.profiles.active=dev)
+    # or in other ways depending on the situation.
+    # To learn a bit more about Spring Profiles, check out https://www.baeldung.com/spring-profiles
+  #
+# If no profile is selected, the "default" profile will be used:
+spring:
+  # Default Profile
+  profiles: default
+  # Connection to local MySql server
+  datasource:
+    url: ${mysql.url}
+    username: ${mysql.username}
+    password: ${mysql.password}
+  jpa:
+    database-platform: org.hibernate.dialect.MySQL5Dialect
+    hibernate:
+      # It is good security practice to, after your database is in production state,
+      # set "ddl-auto" to "none", revoke all privileges from the MySQL user connected to the
+      # Spring application, and give the MySQL user only SELECT, UPDATE, INSERT, and DELETE.
+      ddl-auto: update
+  data:
+    rest:
+      base-path: /api
+    web:
+      # Global Pagination Settings
+      pageable:
+        default-page-size: 10
+        max-page-size: 100
+  jackson:
+    # Set timezone for MySql Hibernate timestamp injections
+    time-zone: UTC

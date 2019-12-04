@@ -1,0 +1,30 @@
+/* General */
+* {
+  transition-property: all !important;
+  transition-delay: 0s !important;
+  transition-duration: .33s !important;
+}
+
+html, body {
+  margin: 0;
+  font-family: "Segoe UI", Arial, sans-serif;
+  background: #e6ecf0;
+  color: #14171a;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Miscellaneous */
+.card-user {
+  color: #912fa9c4;
+  font-weight: bold;
+  font-size: large;
+}
+
+.popover {
+  text-align: center !important;
+}
+
+#hashtagList {
+  height: 14rem;
+}

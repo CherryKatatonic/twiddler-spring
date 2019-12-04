@@ -1,0 +1,13 @@
+.bg-twiddler-dark {
+    color: white;
+    font-weight: bold;
+    background-color: #aa5fbdf5;
+    border: 3px solid #db9bea;
+}
+
+.bg-twiddler-light {
+    color: #93469ec9;
+    font-weight: bold;
+    background-color: #f9e5ff;
+    border: 3px outset #ad65c07a;
+}

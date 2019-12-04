@@ -1,0 +1,70 @@
+.btn {
+    transition: none;
+}
+
+.btn-twiddler-light {
+    color: #93469ec9;
+    font-weight: bold;
+    background-color: #f9e5ff;
+    border: 3px outset #ad65c07a;
+}
+
+.btn-twiddler-dark {
+    color: white;
+    font-weight: bold;
+    background-color: #aa5fbdf5;
+    border: 3px solid #db9bea;
+}
+
+.btn-twiddler-light:hover,
+.btn-twiddler-light:active,
+.btn-twiddler-light:focus {
+    color: white;
+    background-color: #aa5fbdf5;
+    border: 3px solid #db9bea;
+}
+
+.btn-twiddler-dark:hover,
+.btn-twiddler-dark:active,
+.btn-twiddler-dark:focus {
+    color: #93469ec9;
+    background-color: #f9e5ff;
+    border: 3px outset #ad65c07a;
+}
+
+.btn-nav {
+    position: relative;
+    text-decoration: none;
+    padding: 7px 15px;
+    font-weight: bold;
+    color: #912fa9c4;
+    border: none;
+    border-bottom: 3px solid white;
+}
+
+.btn-nav:hover {
+    color: #db6ceac9;
+    border-color: #db6ceac9;
+    cursor: pointer;
+}
+
+.icon-btn .icon {
+    display: inline-block;
+}
+
+.icon-btn .after-icon {
+    display: inline-block;
+    margin-left: 10px;
+    margin-bottom: 0;
+}
+
+.icon-btn svg {
+    fill: #912fa9c4;
+    stroke: #912fa9c4;
+    width: 20px;
+}
+
+.icon-btn:hover svg {
+    fill: #db6ceac9;
+    stroke: #db6ceac9;
+}

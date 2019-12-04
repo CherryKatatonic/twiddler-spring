@@ -15,6 +15,37 @@ html, body {
 }
 
 /* Miscellaneous */
+
+textarea {
+  height: 10rem;
+}
+
+.scroll-container {
+  height: calc(100vh - 10rem);
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+@media (min-width: 576px) {
+  .scroll-container {
+    height: 100vh;
+  }
+}
+
+.bg-twiddler-dark {
+  color: white;
+  font-weight: bold;
+  background-color: #aa5fbdf5;
+  border: 3px solid #db9bea;
+}
+
+.bg-twiddler-light {
+  color: #93469ec9;
+  font-weight: bold;
+  background-color: #f9e5ff;
+  border: 3px outset #ad65c07a;
+}
+
 .card-user {
   color: #912fa9c4;
   font-weight: bold;
@@ -23,6 +54,14 @@ html, body {
 
 .popover {
   text-align: center !important;
+}
+
+.valid-feedback {
+  display: block;
+  width: 100%;
+  margin-top: .25rem;
+  font-size: 80%;
+  color: #6c757d;
 }
 
 #hashtagList {

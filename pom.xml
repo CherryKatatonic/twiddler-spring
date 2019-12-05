@@ -57,10 +57,10 @@
         </dependency>
 
         <!-- Spring Cloud GCP Storage (not implemented yet): for integration with Google Cloud Storage -->
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-gcp-starter-storage</artifactId>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>org.springframework.cloud</groupId>-->
+<!--            <artifactId>spring-cloud-gcp-starter-storage</artifactId>-->
+<!--        </dependency>-->
 
         <!-- JWT (JSON Web Token): for token-based authentication -->
         <dependency>

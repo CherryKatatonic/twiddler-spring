@@ -31,7 +31,28 @@ spring:
     # or with a command line argument if starting the app through the command line (-Dspring.profiles.active=dev)
     # or in other ways depending on the situation.
     # To learn a bit more about Spring Profiles, check out https://www.baeldung.com/spring-profiles
-  #
+spring:
+  profiles: prod
+  datasource:
+    url: ${mysql.url}
+    username: ${mysql.username}
+    password: ${mysql.password}
+  jpa:
+    database-platform: org.hibernate.dialect.MySQL5Dialect
+  data:
+    rest:
+      base-path: /api
+    web:
+      # Global Pagination Settings
+      pageable:
+        default-page-size: 10
+        max-page-size: 100
+  jackson:
+    # Set timezone for MySql Hibernate timestamp injections
+    time-zone: UTC
+
+---
+
 # If no profile is selected, the "default" profile will be used:
 spring:
   # Default Profile

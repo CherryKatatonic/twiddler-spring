@@ -13,7 +13,7 @@ const setJWTToken = token => {
     const claims = jwt_decode(token);
 
     if (Date.now() > claims.exp * 1000) {
-      console.log('JWT expired');
+      window.alert('Session expired - please login again.');
       localStorage.removeItem("jwt");
       delete axios.defaults.headers.common["Authorization"];
       return false;

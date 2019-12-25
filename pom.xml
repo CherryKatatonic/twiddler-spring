@@ -23,6 +23,7 @@
         <java.version>13</java.version>
     <!-- Spring-Cloud: used for integration with Google Cloud services -->
         <spring-cloud.version>Hoxton.RC2</spring-cloud.version>
+        <maven.test.skip>true</maven.test.skip>
     </properties>
 
     <dependencies>
@@ -138,6 +139,18 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <executable>true</executable>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <!-- Added to resolve "no main manifest" error -->
+                            <!-- https://stackoverflow.com/questions/54867295/springboot-no-main-manifest-attribute-maven -->
+                            <goal>repackage</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>

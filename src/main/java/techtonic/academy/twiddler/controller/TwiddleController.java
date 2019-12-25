@@ -24,7 +24,7 @@ import java.security.Principal;
 // The base path for all endpoints in this Controller
 @RequestMapping("/api/twiddles")
 // Allow requests from this foreign origin (the URL of our React app)
-@CrossOrigin("http://localhost:3000")
+@CrossOrigin(origins = {"https://twiddler.katgrennan.com", "http://localhost:3000", "http://localhost:5000"})
 public class TwiddleController {
     @Autowired private TwiddleRepo repo;
     @Autowired private TwiddleService service;

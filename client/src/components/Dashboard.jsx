@@ -8,6 +8,8 @@ import TwiddleList from "./twiddles/TwiddleList";
 import TwiddleForm from "./twiddles/TwiddleForm";
 import AuthFormContainer from "./auth/AuthFormContainer";
 import axios from "axios";
+import { API_URL } from "../util/axiosConfig";
+import AuthNotice from "./auth/AuthNotice";
 
 export default class Dashboard extends Component {
     constructor(props) {
@@ -35,7 +37,7 @@ export default class Dashboard extends Component {
     // state management, so there is some prop-drilling in this app, but it's been kept to a minimum.
 
     login = (username, password) => {
-        axios.post('http://localhost:8080/api/users/login', {username, password}, {
+        axios.post(`${API_URL}/users/login`, {username, password}, {
             headers: {'content-type': 'application/json'}
         })
             .then(res => {
@@ -74,7 +76,7 @@ export default class Dashboard extends Component {
                     <HashtagList />
                 </div>
                 <div className="col-sm-4 p-sm-0">
-                    {this.state.auth && <TwiddleForm user={this.state.auth} />}
+                    {this.state.auth ? <TwiddleForm user={this.state.auth} /> : <AuthNotice/>}
                     <TwiddleList live={false} />
                 </div>
                 <div className="col-sm-4">

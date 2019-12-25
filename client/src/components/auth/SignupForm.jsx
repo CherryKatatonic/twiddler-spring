@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import { API_URL } from "../../util/axiosConfig";
 
 export default class SignupForm extends Component {
     constructor(props) {
@@ -23,7 +24,7 @@ export default class SignupForm extends Component {
         e.preventDefault();
         const { username, password, confirmPassword } = this.state;
 
-        axios.post('http://localhost:8080/api/users/signup', {username, password, confirmPassword}, {
+        axios.post(`${API_URL}/users/signup`, {username, password, confirmPassword}, {
             headers: {'content-type': 'application/json'}
         })
             // Send request to login with provided credentials after signing up because for some reason

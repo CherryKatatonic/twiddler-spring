@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import SingleUser from "./SingleUser";
 import InfiniteScroll from 'react-infinite-scroller';
 import axios from "axios";
+import { API_URL } from "../../util/axiosConfig";
 
 export default class UserList extends Component {
     constructor(props) {
@@ -14,7 +15,7 @@ export default class UserList extends Component {
     }
 
     fetchUsers = () => {
-        axios(`http://localhost:8080/api/users?page=${this.state.nextPage}`)
+        axios(`${API_URL}/users?page=${this.state.nextPage}`)
             .then(res => {
                 const { data } = res;
 
@@ -45,13 +46,17 @@ export default class UserList extends Component {
                         pageStart={0}
                         loadMore={this.fetchUsers}
                         hasMore={!this.state.lastPage}
-                        loader={<div className="loader" key={0}>Loading...</div>}
                         useWindow={false}
                     >
                         {userBuffer}
                     </InfiniteScroll>
+                    {!userBuffer.length &&
+                        <div className="card bg-twiddler-light text-center p-3">
+                            <h3 className="mb-0 font-weight-bold">No users yet :(</h3>
+                        </div>
+                    }
                 </div>
             </div>
         )
     }
-};
+}

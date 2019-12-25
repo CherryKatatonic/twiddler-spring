@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import axios from "axios";
+import { API_URL } from "../../util/axiosConfig";
+
 
 export default class TwiddleForm extends Component{
     constructor(props) {
@@ -27,7 +29,7 @@ export default class TwiddleForm extends Component{
         e.preventDefault();
         const {user, content} = this.state;
 
-        axios.post('http://localhost:8080/api/twiddles', {user, content}, {
+        axios.post(`${API_URL}/twiddles`, {user, content}, {
             headers: {'content-type': 'application/json'}
         })
             .then(() => window.location.reload())

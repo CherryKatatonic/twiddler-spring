@@ -32,3 +32,6 @@ build/
 
 ### Spring Boot ###
 MANIFEST.MF
+
+### Node JS ###
+package-lock.json

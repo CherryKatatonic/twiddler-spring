@@ -29,7 +29,7 @@ import javax.validation.Valid;
 // The base path for all endpoints in this Controller
 @RequestMapping("/api/users")
 // Allow requests from this foreign origin (the URL of our React app)
-@CrossOrigin(origins = {"https://twiddler.katgrennan.com", "http://localhost:3000", "http://localhost:5000"})
+@CrossOrigin(origins = {"http://localhost:3000", "http://localhost:5000"})
 public class UserController {
 
     @Autowired private UserRepo repo;

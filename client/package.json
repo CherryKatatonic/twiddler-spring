@@ -24,7 +24,6 @@
     "extends": "react-app"
   },
   "homepage": "https://twiddler.katgrennan.com",
-  "proxy": "http://localhost:8080",
   "browserslist": {
     "production": [
       ">0.2%",

@@ -2,31 +2,39 @@
 A Twitter mockup made with React, Spring Boot, and MySQL
 
 ## Getting Started:
-### 1. Clone the project to your machine and open the project folder in your IDE
+1. Clone the project to your machine and open the project folder in your IDE
 
-### 2. Ensure that you have a local MySQL server running on port 3306 with a schema called "twiddler"
+2. Ensure that you have a local MySQL server running on port 3306 with a schema called "twiddler"
 
-### 3. Install dependencies:
-- Client:
-    - Run `npm install` in the `client/` folder
-- Server (using IDE or CLI):
-    - (IDE): Click "Enable Maven auto-import"
-    - (CLI): run `mvn clean package` in the project folder
+3. Install dependencies:
+    - Client:
+        - Run `npm install` in the `client/` folder
+    - Server:
+        - (IDE): Enable Maven auto-import
+        - (CLI): run `mvn clean package` in the project folder
 
-### 4. Add the following environment variables to your Spring Boot **Run Configuration** in the IDE:
-- `mysql.url`: `mysql.url=jdbc:mysql://localhost:3306/twiddler`
-- `mysql.username`: `YOUR_MYSQL_USERNAME`
-- `mysql.password`: `YOUR_MYSQL_PASSWORD`
-- `JWT_SECRET_KEY`: `ANY_STRING_YOU_WANT`
-- (optional) `spring.profiles.active`: `dev`
-  - optional because a `default` profile is defined in `application.yml` with the same settings as the `dev` profile
+4. Environment Variables:
+    - Client:
+        - `REACT_APP_API_URL` is set for the production environment in `/client/.env.production` and **_should be overridden_** for local development & other environments
+            - Method 1: create a file called `.env.local` and add the line `REACT_APP_API_URL=http://localhost:8080/api`
+            - Method 2: run `EXPORT REACT_APP_API_URL=http://localhost:8080/api` in your terminal before running `npm start`
+    - Server:
+        - These default environment variables are defined in `application.yml`:
+            - `spring.profiles.active`: `local`
+            - `database.url`: `jdbc:mysql://localhost:3306/twiddler`
+            - `database.username`: `root`
+            - `database.password`:
+            - `JWT_SECRET_KEY`: `TOP_SECRET`
+        - These values can be overriden if needed either by passing them in as arguments when running in the command line, or setting them in the run configuration before running in an IDE
 
-### 5. Run:
-- Client:
-    - Run `npm start` in the `client/` folder
-- Server (using IDE or CLI):
-    - (IDE): Click the Run button in the IDE
-    - (CLI): run `mvn spring-boot:run -Dspring-boot.run.jvmArguments="-Dmysql.url=jdbc:mysql://localhost:3306/twiddler -Dmysql.username=YOUR_MYSQL_USERNAME -Dmysql.password=YOUR_MYSQL_PASSWORD -DJWT_SECRET_KEY=ANY_STRING_YOU_WANT"` in the project folder
+5. Run:
+    - Client:
+        - (IDE): Run as Node.js application with `npm start` command
+        - (CLI): Run `npm start` from the `client/` folder
+    - Server:
+        - (IDE): Click the Run button in the IDE
+        - (CLI): run `mvn spring-boot:run` from the project folder
+            - with custom environment vaeriables: `mvn spring-boot:run -Dspring-boot.run.jvmArguments="-Dspring.profiles.active=local -Ddatabase.url=jdbc:mysql://localhost:3306/twiddler -Ddatabase.username=YOUR_MYSQL_USERNAME -Ddatabase.password=YOUR_MYSQL_PASSWORD -DJWT_SECRET_KEY=ANY_STRING_YOU_WANT"`
 
 ## Dependencies:
 
@@ -75,7 +83,7 @@ A Twitter mockup made with React, Spring Boot, and MySQL
   - for connecting to a MySQL database from a Java application
   
 ## Resources:
-- Full-Stack Spring Boot/React/Redux/MySQL tutorial course **<-- (highly recommended)**
+- Full-Stack Spring Boot/React/Redux/MySQL tutorial course
   - https://www.udemy.com/course/full-stack-project-spring-boot-20-react-redux/
 - Java Websockets Tutorial
   - https://www.baeldung.com/java-websockets

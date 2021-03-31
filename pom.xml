@@ -20,7 +20,7 @@
 <!-- Properties -->
     <properties>
     <!-- Java version -->
-        <java.version>13</java.version>
+        <java.version>8</java.version>
     <!-- Spring-Cloud: used for integration with Google Cloud services -->
         <spring-cloud.version>Hoxton.RC2</spring-cloud.version>
         <maven.test.skip>true</maven.test.skip>

@@ -27,7 +27,7 @@ public class JwtAuthFilter extends OncePerRequestFilter {
         String jwt = getJwtFromRequest(req);
 
         // If JWT is valid, set auth token on the Security Context
-        if (jwt != null && !jwt.isBlank() && jwtProvider.validateToken(jwt)) {
+        if (jwt != null && !jwt.isEmpty() && jwtProvider.validateToken(jwt)) {
             Long uid = jwtProvider.getUserId(jwt);
             User user = service.loadUserById(uid);
 
@@ -47,7 +47,7 @@ public class JwtAuthFilter extends OncePerRequestFilter {
     private String getJwtFromRequest(HttpServletRequest req) {
         String bearer = req.getHeader("Authorization");
 
-        if (bearer != null && !bearer.isBlank() && bearer.startsWith("Bearer")) {
+        if (bearer != null && !bearer.isEmpty() && bearer.startsWith("Bearer")) {
             return bearer.substring(7);
         }
 

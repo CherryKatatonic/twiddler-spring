@@ -1,34 +1,24 @@
 spring:
-  # Dev Profile
-  # Config settings for running the app in a local development environment
-  profiles: dev
+  profiles:
+    active: local
 
---- # Different Spring Profiles in a .YML config file are separated by a triple hyphen
-    # The profile to use can be set with an environment variable (spring.profiles.active=dev),
-    # or with a command line argument if starting the app through the command line (-Dspring.profiles.active=dev)
-    # or in other ways depending on the situation.
-    # To learn a bit more about Spring Profiles, check out https://www.baeldung.com/spring-profiles
-spring:
-  profiles: prod
-
----
-
-# If no profile is selected, the "default" profile will be used:
-spring:
-  # Default Profile
-  profiles: default
-  # Connection to local MySql server
   datasource:
-    url: ${database.url:jdbc:mysql://localhost:3306/twiddler}
-    username: ${database.username}
-    password: ${database.password}
+    url: jdbc:mysql://localhost:3306/twiddler
+    username: root
+    password:
+
   jpa:
     database-platform: org.hibernate.dialect.MySQL5Dialect
+    generate-ddl: true
+    show-sql: true
     hibernate:
-      # It is good security practice to, after your database is in production state,
-      # set "ddl-auto" to "none", revoke all privileges from the MySQL user connected to the
-      # Spring application, and give the MySQL user only SELECT, UPDATE, INSERT, and DELETE.
-      ddl-auto: ${hibernate.ddl-auto:none}
+      ddl-auto: update
+      # Allows Hibernate to automatically update the database,
+      # for example it will automatically create our tables for us
+      # if they do not yet exist in the database, and update with
+      # any changes we make such as creating/dropping/updating any tables or columns
+      # NOTE: 'twiddler' database/schema must be created manually
+
   data:
     rest:
       base-path: /api
@@ -37,8 +27,51 @@ spring:
       pageable:
         default-page-size: 10
         max-page-size: 100
+
   jackson:
     # Set timezone for MySql Hibernate timestamp injections
+    # MySql server may be using your local system timezone by default;
+    # If so, set it to UTC by executing the following command inside the MySql server:
+    # SET @@global.time_zone='+00:00';
     time-zone: UTC
+
 server:
-  port: ${port:8080}
+  port: 8080
+
+# Different Spring Profiles in a .YML config file are separated by a triple hyphen (---)
+# The profile to use can be set with an environment variable such as spring.profiles.active=dev,
+# or with a command line argument if starting the app through the command line (-Dspring.profiles.active=dev),
+# or in other ways depending on the situation.
+# To learn a bit more about Spring Profiles, check out https://www.baeldung.com/spring-profiles
+
+---
+
+spring:
+  profiles: local
+
+JWT_SECRET_KEY: SUPER_SECRET
+
+---
+
+spring:
+  profiles: qa
+
+---
+
+spring:
+  profiles: dev
+
+---
+
+spring:
+  profiles: prod
+
+  jpa:
+    database-platform: org.hibernate.dialect.MySQL5Dialect
+    hibernate:
+      # It is good security practice to, after your database is in production state,
+      # set "ddl-auto" to "none", revoke all privileges from the MySQL user connected to the
+      # Spring application, and give the MySQL user only SELECT, UPDATE, INSERT, and DELETE.
+      ddl-auto: none
+
+---
